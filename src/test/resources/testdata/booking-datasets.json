@@ -1,0 +1,19 @@
+{
+  "bookings": [
+    {
+      "firstname": "Anil",
+      "lastname": "Tester",
+      "totalprice": 150
+    },
+    {
+      "firstname": "Rahul",
+      "lastname": "Kumar",
+      "totalprice": 250
+    },
+    {
+      "firstname": "Priya",
+      "lastname": "Sharma",
+      "totalprice": 350
+    }
+  ]
+}

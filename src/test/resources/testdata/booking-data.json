@@ -1,0 +1,28 @@
+
+{
+  "createBooking": {
+    "firstname": "Anil",
+    "lastname": "Tester",
+    "totalprice": 150,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-11-01",
+      "checkout": "2026-11-05"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  "updateBooking": {
+    "firstname": "AnilUpdated",
+    "lastname": "TesterUpdated",
+    "totalprice": 200,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2026-11-10",
+      "checkout": "2026-11-15"
+    },
+    "additionalneeds": "Lunch"
+  },
+  "patchBooking": {
+    "firstname": "AnilPatched"
+  }
+}
