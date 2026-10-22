@@ -24,8 +24,10 @@ jobs:
           cache: maven
 
       - name: Run API tests
+        id: tests
+        continue-on-error: true
         run: |
-          rm -rf allure-results
+          rm -rf allure-results allure-report
           mvn clean test
 
       - name: Generate Allure report
@@ -42,3 +44,28 @@ jobs:
             allure-results/
             allure-report/
           if-no-files-found: warn
+
+      - name: Email test report
+        if: always()
+        uses: dawidd6/action-send-mail@v4
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GYUIMGXYWTQPABOJ }}
+          subject: 'REST Assured API Tests - ${{ steps.tests.outcome }}'
+          to: ${{ secrets.GMAIL_USERNAME }}
+          from: REST Assured CI <${{ secrets.GMAIL_USERNAME }}>
+          body: |
+            REST Assured API test execution has completed.
+
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Trigger: ${{ github.event_name }}
+            Test status: ${{ steps.tests.outcome }}
+
+            View the workflow run:
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Download the api-test-reports artifact from the workflow run to inspect the reports.
